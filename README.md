@@ -194,7 +194,7 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 
 ## Acknowledgments
 
-- []()
+- [best readme template](https://github.com/othneildrew/Best-README-Template)
 - []()
 - []()
 
@@ -232,4 +232,5 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 [bootstrap-url]: https://getbootstrap.com
 [jquery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
 [jquery-url]: https://jquery.com
+
 # aws_learn
