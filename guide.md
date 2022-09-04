@@ -1,19 +1,46 @@
+10.0.4.0/26
+either 16/ 32 avail. ip's
+
+10.0.128.0/26
+
+10.0.4.2/26 - 10.0.128.0/20
+10.0.4.18/26 - 10.0.0.0/20
+
 build vpc + 2 subnets, private and public.
 
 connect to ec2 public, uploaded key pair.
 make sure inbound ssh for 22 is correct.
+also check unfder security group outbound to 80 from all
 
 ssh -i "aws.pem" ec2-user@ec2-34-227-106-182.compute-1.amazonaws.com
 
-front machine:
-update - sudo yum update -y
-install git - sudo yum install git -y
-install node 14 - https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/setting-up-node-on-ec2-instance.html
+front:
+sudo yum update -y
+sudo yum install git -y
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bashcurl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+. ~/.nvm/nvm.sh
 nvm install 14
-update
-bring repo
 
 backend:
+make sure the aws.pem is copied coerrectly-
+https://serverfault.com/questions/379938/ec2-instance-always-ask-me-to-enter-passphrase-for-the-pem-during-connection
+openssl rsa -check -in test.pem -noout
+It should say "RSA key ok"
+
 update
-install docker
+https://serverfault.com/questions/836198/how-to-install-docker-on-aws-ec2-instance-with-ami-ce-ee-update
+
+install docker - sudo yum install docker -y
+sudo service docker start
+sudo usermod -a -G docker ec2-user
+docker pull postgres:latest
+check outbound
+
+be user data:
+sudo yum update -y
+sudo yum install docker -y
+sudo service docker start
+sudo usermod -a -G docker ec2-user
+docker pull postgres:latest
+
 run postgres image
