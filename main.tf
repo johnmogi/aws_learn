@@ -1,9 +1,14 @@
 terraform {
+    cloud {
+    organization = "1digital"
+    workspaces {
+      name = "weightapp_ws"
+    }
+  }
   required_providers {
     aws = {
       source = "hashicorp/aws"
-    #   version = "4.29.0"
-      version = "3.74.0"
+      version = "~> 4.16"
     }
   }
 
@@ -16,6 +21,16 @@ resource "aws_instance" "app_server" {
   instance_type = "t2.micro"
 
   tags = {
-    Name = "ExampleAppServerInstance"
+    Name = var.instance_name
+  }
+}
+
+
+resource "aws_vpc" "main" {
+  cidr_block       = "10.0.0.0/16"
+  instance_tenancy = "default"
+
+  tags = {
+    Name = "main"
   }
 }
