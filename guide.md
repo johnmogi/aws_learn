@@ -1,12 +1,14 @@
-10.0.4.0/26
-either 16/ 32 avail. ip's
+creating and partitioning a vpc into 2 subnets:
+https://cidr.xyz/
+10.0.128.0/26 - vpc (64 available ips)
+10.0.128.0/28 - back (16 available ips)
+10.0.128.16/28 - front (16 available ips)
 
-10.0.128.0/26
+build vpc + 2 subnets,( private and public).
+create route table and connect to 2 subnets
+created elastic ip
 
-10.0.4.2/26 - 10.0.128.0/20
-10.0.4.18/26 - 10.0.0.0/20
-
-build vpc + 2 subnets, private and public.
+create 2 ec2 connect each to its subnet
 
 connect to ec2 public, uploaded key pair.
 make sure inbound ssh for 22 is correct.
@@ -15,8 +17,8 @@ also check unfder security group outbound to 80 from all
 ssh -i "aws.pem" ec2-user@ec2-34-227-106-182.compute-1.amazonaws.com
 
 front:
-sudo yum update -y
-sudo yum install git -y
+yum update -y
+yum install git -y
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bashcurl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 . ~/.nvm/nvm.sh
 nvm install 14
